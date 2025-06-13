@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Delibery - Tienda Virtual</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .options label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #fff5f5;
+      padding: 0.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .options img {
+      width: 70px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .form-group h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Delibery</h1>
+    <p>Comida casera hecha con cariño, fresca cada día y lista para llegar a tu puerta.</p>
+    <a href="https://www.instagram.com/deliberry_neiva?igsh=MTV5Zmllazl2cmd5MA==" target="_blank" class="social-link">@deliberry_neiva</a>
+  </header>
+
+  <main>
+    <section class="order-form">
+      <h2>Personaliza tu Pedido</h2>
+      <form id="orderForm" onsubmit="enviarPedidoPorWhatsApp(); return false;">
+        
+        <!-- Nombre -->
+        <div class="form-group">
+          <h3>Tu nombre</h3>
+          <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required />
+        </div>
+
+        <!-- Dirección -->
+        <div class="form-group">
+          <h3>Dirección de entrega</h3>
+          <input type="text" id="direccion" name="direccion" placeholder="Ej: Calle 123 #45-67" required />
+        </div>
+
+        <!-- Tamaño -->
+        <div class="form-group">
+          <h3>Elige tu tamaño</h3>
+          <div class="options">
+            <label>
+              <img src="Imagen de WhatsApp 2025-06-11 a las 18.02.41_ee531bfc.jpg" alt="5 onz">
+              <input type="radio" name="size" value="5 ONZ - $7.000" required> 5 ONZ - $7.000
+            </label>
+            <label>
+              <img src="Imagen de WhatsApp 2025-06-11 a las 18.05.01_c886cd9f.jpg" alt="9 onz">
+              <input type="radio" name="size" value="9 ONZ - $12.000"> 9 ONZ - $12.000
+            </label>
+            <label>
+              <img src="Imagen 3.jpg" alt="12 onz">
+              <input type="radio" name="size" value="12 ONZ - $15.000"> 12 ONZ - $15.000
+            </label>
+            <label>
+              <img src="iamgen 4.jpg" alt="16 onz">
+              <input type="radio" name="size" value="16 ONZ - $19.000"> 16 ONZ - $19.000
+            </label>
+            <label>
+              <img src="iamgen 5.jpg" alt="24 onz">
+              <input type="radio" name="size" value="24 ONZ - $25.000"> 24 ONZ - $25.000
+            </label>
+          </div>
+        </div>
+
+        <!-- Sabor de crema -->
+        <div class="form-group">
+          <h3>Sabor de tu crema</h3>
+          <div class="options">
+            <label><input type="radio" name="cream" value="Crema de la casa" required> Crema de la casa</label>
+            <label><input type="radio" name="cream" value="Crema de chocolate"> Crema de chocolate</label>
+            <label><input type="radio" name="cream" value="Crema chantilly"> Crema chantilly</label>
+          </div>
+        </div>
+
+        <!-- Toppings -->
+        <div class="form-group">
+          <h3>Toppings</h3>
+          <div class="options">
+            <label><input type="checkbox" name="toppings" value="Chispas de chocolate"> Chispas de chocolate</label>
+            <label><input type="checkbox" name="toppings" value="Frutas frescas"> Frutas frescas</label>
+            <label><input type="checkbox" name="toppings" value="Nueces"> Nueces</label>
+          </div>
+        </div>
+
+        <!-- Método de pago -->
+        <div class="form-group">
+          <h3>Método de Pago</h3>
+          <div class="options">
+            <label><input type="radio" name="payment" value="Tarjeta" required> Tarjeta</label>
+            <label><input type="radio" name="payment" value="Efectivo"> Efectivo</label>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">📲 Pedir por WhatsApp</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>Visita nuestra tienda virtual en <a href="https://instagram.com/delibery_amor" target="_blank">@delibery_amor</a></p>
+  </footer>
+
+  <!-- SCRIPT WHATSAPP -->
+  <script>
+    function enviarPedidoPorWhatsApp() {
+      const nombre = document.getElementById("nombre").value;
+      const direccion = document.getElementById("direccion").value;
+      const size = document.querySelector('input[name="size"]:checked')?.value;
+      const cream = document.querySelector('input[name="cream"]:checked')?.value;
+      const toppings = Array.from(document.querySelectorAll('input[name="toppings"]:checked')).map(t => t.value).join(", ") || "Ninguno";
+      const payment = document.querySelector('input[name="payment"]:checked')?.value;
+
+      const mensaje = `Hola 👋, soy ${nombre}.
+Quiero pedir:
+🥤 Tamaño: ${size}
+🍦 Crema: ${cream}
+✨ Toppings: ${toppings}
+📍 Dirección: ${direccion}
+💰 Pago: ${payment}
+¡Gracias!`;
+
+      const numero = "573144855583"; // ← CAMBIA por tu número real de WhatsApp
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
