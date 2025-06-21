@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deliberry - Tienda Elegante</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="descarga (1).jpeg" />
+  <link rel="stylesheet" href="styles.css">
+<body class="text-gray-800">
+
+  <header class="hero-bg text-white text-center py-16">
+    <header class="relative bg-gradient-to-b from-pink-100 to-white text-center py-16">
+  <div class="absolute top-4 left-8 animate-bounce text-5xl">🍓</div>
+  <div class="absolute top-4 right-8 animate-bounce text-5xl">🍓</div>
+
+  <h1 class="text-8xl font-extrabold text-pink-600 animate-fade-in-down">Deliberry</h1>
+
+  <p class="text-3xl mt-2 text-gray-600 italic">Fresas y postres caseros hechos con cariño, frescas cada día y listos para alegrar tu día 🍰✨</p>
+<div class="bg-yellow-100 text-yellow-800 px-4 py-1 rounded-full inline-block mt-8 text-sm font-medium shadow animate-fade-in-up">
+  🎀 Más que postres, momentos felices 🎀
+</div>
+
+  <img src="descarga (1).jpeg" alt="Postre Deliberry" class="mx-auto w-44 mt-6 mb-4 rounded-xl shadow-elegant">
+ 
+  <div class="flex flex-col items-center gap-4 mt-4">l
+
+  
+
+  <a href="https://www.instagram.com/deliberry_neiva" class="text-pink-600 underline text-3xl hover:text-gray-100">@deliberry_neiva</a>
+  <a href="#menu" class="inline-block bg-red-400 hover:bg-red-500 text-white font-bold py-4 px-8 rounded-full shadow-md transition mt-4">Ver menú 🍓</a>
+</header>
+
+   
+</headeR>
+
+  <main class="container mx-auto px-4 py-12">
+    <section class="text-center mb-10">
+      <h2 class="text-3xl font-bold mb-6 gold-text">Nuestro Menú</h2>
+      <div class="flex flex-wrap justify-center gap-4">
+        <button class="bg-red-500 text-white px-6 py-2 rounded-full hover-gold hover:scale-105 transition">Crea tus fresas</button>
+        <button class="bg-red-500 text-white px-6 py-2 rounded-full hover-gold hover:scale-105 transition">Especiales</button>
+        <button class="bg-red-500 text-white px-6 py-2 rounded-full hover-gold hover:scale-105 transition">Combos</button>
+      </div>
+    </section>
+
+    <section class="bg-white p-8 rounded-xl shadow-elegant gold-border max-w-4xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6 text-center">📝 Personaliza tu Pedido</h2>
+      <form id="orderForm" onsubmit="enviarPedidoPorWhatsApp(event)" class="space-y-6">
+        <div>
+          <label class="block font-semibold mb-2">👤 Tu nombre</label>
+          <input type="text" id="nombre" class="w-full border p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Escribe tu nombre" required />
+        </div>
+        <div>
+          <label class="block font-semibold mb-2">📍 Dirección de entrega</label>
+          <input type="text" id="direccion" class="w-full border p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Ej: Calle 123 #45-67" required />
+   <div>
+<div id="postres-container" class="space-y-10">
+  <!-- Aquí se insertarán los postres dinámicamente -->
+</div>
+
+<div class="text-center mt-6">
+  <button type="button" onclick="agregarPostre()" class="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-6 rounded-full shadow-md transition">➕ Agregar otro postre</button>
+</div>
+<div class="mt-8">
+  <h3 class="font-semibold mb-3 text-xl text-pink-600 flex items-center gap-2">
+    💳 Método de pago
+  </h3>
+  <div class="flex flex-wrap gap-4 bg-pink-50 p-4 rounded-xl border border-pink-200 justify-center">
+    <label class="flex items-center gap-2">
+      <input type="radio" name="payment" value="Efectivo" required>
+      <span class="text-gray-700">💵 Efectivo</span>
+    </label>
+    <label class="flex items-center gap-2">
+      <input type="radio" name="payment" value="Nequi">
+      <span class="text-gray-700">📲 Nequi</span>
+    </label>
+    <label class="flex items-center gap-2">
+      <input type="radio" name="payment" value="Tarjeta">
+      <span class="text-gray-700">💳 Tarjeta</span>
+    </label>
+  </div>
+</div>
+<div class="text-center mt-10">
+  <button onclick="enviarPedidoPorWhatsApp(event)" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">
+    📲 Enviar pedido por WhatsApp
+  </button>
+</div>
+
+
+<script>
+  let contadorPostres = 1;
+
+  function agregarPostre() {
+    const container = document.getElementById("postres-container");
+    const nuevo = document.createElement("div");
+    nuevo.className = "bg-pink-50 border border-pink-200 p-4 rounded-xl animate-fade-in-up";
+    nuevo.innerHTML = `
+      <h3 class="text-lg font-semibold mb-4 text-pink-600">🍓 Postre #${contadorPostres}</h3>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-4">
+        ${["5 ONZ - $7.000", "9 ONZ - $12.000", "12 ONZ - $15.000", "16 ONZ - $19.000", "24 ONZ - $25.000"].map((text, i) => `
+          <label class="block text-center cursor-pointer transition transform hover:scale-105 rounded-xl p-3 border-2 border-pink-300 bg-white hover:shadow-lg">
+            <img src="imagen${i + 1}.png" alt="${text}" class="mx-auto object-contain h-24 w-auto rounded-lg mb-2">
+            <input type="radio" name="size${contadorPostres}" value="${text}" class="mt-2"> 
+            <span class="block text-lg font-medium mt-1">${text}</span>
+          </label>
+        `).join('')}
+      </div>
+
+      <div class="mb-4">
+        <h4 class="text-pink-600 font-semibold mb-2 text-lg">🍦 <span class='font-bold'>Crema</span></h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+          ${["Crema de la casa", "Crema de chocolate", "Crema chantilly"].map(c => `
+            <label class="bg-white p-3 rounded-lg border border-pink-200 shadow-sm hover:shadow-md transition cursor-pointer flex items-center gap-2">
+              <input type="checkbox" name="cream${contadorPostres}" value="${c}">
+              🍦 ${c}
+            </label>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <h4 class="text-pink-600 font-semibold mb-2 text-lg">✨ <span class='font-bold'>Toppings</span></h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+          ${[
+            "🍫 Chispas de chocolate - $1.000",
+            "🍇 Frutas frescas - $3.000",
+            "🌰 Nueces - $3.000",
+            "🧀 Queso - $3.000",
+            "🍓 Fresa - $3.000",
+            "🍬 Masmelos - $2.000"
+          ].map(t => `
+            <label class="bg-white p-3 rounded-lg border border-pink-200 shadow-sm hover:shadow-md transition cursor-pointer flex items-center gap-2">
+              <input type="checkbox" name="toppings${contadorPostres}" value="${t}">
+              ${t}
+            </label>
+          `).join('')}
+        </div>
+      </div>
+
+      <button onclick="this.parentElement.remove()" class="text-red-500 text-sm underline mt-2">Eliminar este postre</button>
+    `;
+    container.appendChild(nuevo);
+    contadorPostres++;
+  }
+
+  window.onload = () => agregarPostre();
+
+  function enviarPedidoPorWhatsApp(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value.trim();
+    const direccion = document.getElementById('direccion').value.trim();
+    const payment = document.querySelector('input[name="payment"]:checked')?.value || '';
+
+    if (!nombre || !direccion || !payment) {
+      alert("Por favor completa todos los campos obligatorios.");
+      return;
+    }
+
+    let mensaje = `Hola 👋, soy ${nombre}.\n📍 Dirección: ${direccion}\n`;
+
+    for (let i = 1; i < contadorPostres; i++) {
+      const size = document.querySelector(`input[name="size${i}"]:checked`)?.value || 'No seleccionado';
+      const creams = Array.from(document.querySelectorAll(`input[name="cream${i}"]:checked`)).map(e => e.value).join(', ') || 'Ninguna';
+      const toppings = Array.from(document.querySelectorAll(`input[name="toppings${i}"]:checked`)).map(e => e.value).join(', ') || 'Ninguno';
+
+      mensaje += `\n🍓 Postre #${i}:\n🥤 Tamaño: ${size}\n🍦 Crema(s): ${creams}\n✨ Toppings: ${toppings}\n`;
+    }
+
+    mensaje += `\n💳 Pago: ${payment}`;
+
+    const numero = '573144855583';
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+  }
+</script>
+
+</body>
+</html>
